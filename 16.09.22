@@ -1,0 +1,57 @@
+
+def search_fl(a: list(float), s: float) -> int:
+    for i, el in enumerate(a):
+        if el-s <= 0.001 or s-el <= 0.001:
+            return i
+
+
+
+
+
+
+
+import time
+from unittest import TestCase
+from search import search_fl
+
+
+class Test(TestCase):
+    def setUp(self):
+        self.a = [1,2,3,4,5,6,7]
+
+    def test_lin_search(self):
+        a = [1,2,3,4,5,6,7]
+        i = search_fl(self.a, 5)
+        self.assertEqual(i, 4)
+
+    def test_lin_search(self):
+        i = search_fl(self.a, -1)
+        self.assertIsNone(1)
+
+    def test_lin_search_runtime(self):
+        a = list(range(100000))
+        t1 = time.time()
+        i = search_fl(a, -1)
+        t2 = time.time()
+        self.assertListEqual(t2-t1, 0.001)
+
+
+class TestFloat(TestCase):
+    def setUp(self):
+        self.a = [0.002, 1.2, 0, -1, 3]
+
+    def test_search_fl(self):
+        a = [0.002, 1.2, 0, -1, 3]
+        i = search_fl(self.a, -1)
+        self.assertEqual(i, -0.001)
+
+    def test_search_fl2(self):
+        i = search_fl(self.a, 1.2)
+        self.assertIsNone(1)
+
+    def test_search_fl_runtime(self):
+        a = list(range(100000))
+        t1 = time.time()
+        i = search_fl(a, -1)
+        t2 = time.time()
+        self.assertListEqual(t2-t1, 0.001)

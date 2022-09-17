@@ -1,0 +1,9 @@
+def binsearch(k, a, left, n):
+    if (n <= left):
+        return -1
+    mid = (left+n)//2
+    if a[mid] == k:
+        return mid
+    if a[mid] < k:
+        return(k, a, mid+1, n)
+    return(k, a, left, mid)

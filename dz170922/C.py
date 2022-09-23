@@ -1,15 +1,9 @@
 import math
-a = input().split()
-n = int(a[0])
-m = int(a[1])
-e2 = (n**2)-m
-e1 = (2*n)
-h = 0
-for i in range(0, 1001):
-    s = (i**4) - e1 * (i ** 2) + i + e2
-    if s == 0:
-        b = n-(i**2)
-        if i+b**2 == m:
-            h += 1
-print(h)
+n,m = list(map(int, input().split()))
+k = 0
 
+for a in range(0,m+1):
+    for b in range(0, n+1):
+        if a**2 + b == n and a + b**2 == m:
+            k+=1
+print(k)

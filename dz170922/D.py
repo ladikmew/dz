@@ -1,9 +1,12 @@
 a = int(input())
 x = input().split()
 y = input().split()
+del x[0]
+del y[0]
 x+=y
 for i in range(len(x)):
     x[i] = int(x[i])
+#print(x)
 f = 0
 x = set(x)
 #print(x)

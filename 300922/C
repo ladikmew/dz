@@ -1,0 +1,11 @@
+def game(d, n):
+    if n % 2 == 0:
+        print(d[(n // 2) - 1])
+    else:
+        print(d[n // 2])
+
+
+if __name__ == "__main__":
+    n = int(input())
+    d = sorted(list(map(int, input().split())))
+    game(d, n)

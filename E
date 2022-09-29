@@ -1,26 +1,4 @@
-def duck(a, b, c):
-    g = 0
-    if len(c) == len(a) + len(b):
-        for i in range(len(a)):
-            for j in range(len(c)):
-                if a[i] == c[j]:
-                    g += 1
-                    c = c.replace(c[j], "*", 1)
-        for i in range(len(b)):
-            for j in range(len(c)):
-                if b[i] == c[j]:
-                    g += 1
-                    c = c.replace(c[j], "*", 1)
-        if g == len(a) + len(b):
-            print("YES")
-        else:
-            print("NO")
-    else:
-        print("NO")
-
-
-if __name__ == "__main__":
-    a = input()
-    b = input()
-    c = input()
-    duck(a, b, c)
+if sorted(input() + input()) == sorted(input()):
+    print("YES")
+else:
+    print("NO")

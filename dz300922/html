@@ -1,0 +1,59 @@
+import urllib.request
+
+url = "http://www.gimp.org"
+with urllib.request.urlopen("http://www.example.com/") as f:
+    html = f.read().decode("utf-8")
+
+
+def find_a(s, start=0):
+    start_i = s.find("<a", start)
+    if start_i == -1:
+        return -1, -1
+    href_i = s.find("href =", start_i)
+    href_start = href_i + 6
+    href_finish = s.find('"', href_start)
+    return href_start, href_finish
+
+
+finish_href = 0
+in_a = []
+out_a = []
+a = []
+while True:
+    start_href, finish_href = find_a(res.text, finish_href)
+    if finish_href == -1:
+        break
+    s = res.text[start_href:finish_href]
+    if s[:7] == 'https:/':
+        out_a.append(s)
+    else:
+        in a.append()
+    a.append(res.text[start_href: finish_href])
+print(a)
+
+
+
+
+
+
+
+
+
+
+
+
+def st_to_file(s: str) -> str:
+    if s.startwith("/"):
+        s = s[1:]
+    s.replace("/", "_")
+    if not s.endswith(".html"):
+        s += ".html"
+    return s
+
+
+def load_and_return(url: str):
+    res = requests.get(url)
+    return res.text
+
+
+if __name__ == "__main__":

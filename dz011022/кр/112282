@@ -7,8 +7,12 @@ def sred_m(a, b, c, s, d):
         s.append(f)
     for i in range(len(s)):
         d += int(s[i])
-    # print(s)
-    print("%.3f" % (d / len(s)))
+    if (d / len(s))//1!=(d / len(s)):
+        print(*s)
+        print("%.3f" % (d / len(s)))
+    else:
+        print(*s)
+        print(d/len(s))
 
 
 if __name__ == "__main__":

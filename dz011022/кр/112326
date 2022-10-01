@@ -15,7 +15,7 @@ def slag(n, a, s, h):
     #print(h)
    # print(s)
     for i in range(len(s)):
-        a[s[i]] == h[i]
+        a[int(s[i])]=h[i]
     print(*a)
 
 

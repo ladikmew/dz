@@ -1,0 +1,27 @@
+def slag(n, a, s, h):
+    for i in range(n):
+
+        if int(a[i]) % 2 != 0:
+            h.append(a[i])
+            s.append(i)
+    for i in range(len(h)):
+        b: bool = True
+        for i in range(len(h) - 1):
+            if h[i] > h[i + 1]:
+                h[i], h[i + 1] = h[i + 1], h[i]
+                b = False
+        if b:
+            break
+    #print(h)
+   # print(s)
+    for i in range(len(s)):
+        a[s[i]] == h[i]
+    print(*a)
+
+
+if __name__ == "__main__":
+    n = int(input())
+    a = input().split()
+    s = []
+    h = []
+    slag(n, a, s, h)

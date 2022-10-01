@@ -1,0 +1,18 @@
+from random import randint
+
+
+def sred_m(a, b, c, s, d):
+    for i in range(c):
+        f = randint(a, b)
+        s.append(f)
+    for i in range(len(s)):
+        d += int(s[i])
+    # print(s)
+    print("%.3f" % (d / len(s)))
+
+
+if __name__ == "__main__":
+    a, b, c = map(int, input().split())
+    s = []
+    d = 0
+    sred_m(a, b, c, s, d)

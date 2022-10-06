@@ -1,0 +1,22 @@
+def binka(n,a,b):
+    for i in b:
+        count = 0
+        s = n - 1
+        while s - count > 1:
+            d = (s + count) // 2
+            if a[d] < i:
+                count = d
+            else:
+                s = d
+        #print(a[count])
+        #print(a[s])
+        if i - a[count] <= a[s] - i:
+            print(a[count])
+        else:
+            print(a[s])
+
+if __name__ =="__main__":
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+    binka(n,a,b)

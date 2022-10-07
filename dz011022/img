@@ -22,11 +22,17 @@ class Imgel:
                 n_a[irow, icol] = (r, r, r)
         self.new_img = n_a
 
+    def turn_right(self):
+        n_a = np.zeros(self.img.shape[0],self.img.shape[1],self.img.shape[2], dtype=np.uint8)
+        for irow in range(self.img.shape[0]):
+            for icol in range(self.img.shape[1]):
+                n_a[irow, icol] = self.img[irow,icol]
+        self.new_img = n_a
+
     def upside_down(self):
         n_a = np.zeros(self.img.shape, dtype=np.uint8)
         for irow in range(self.img.shape[0]):
             for icol in range(self.img.shape[1]):
-                n_a[()]
-
+                n_a[irow,icol] = self.img[self.img.shape[0]-irow-1, icol]
         self.new_img = n_a
-# def turn_right(self):
+

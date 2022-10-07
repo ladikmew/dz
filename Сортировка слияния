@@ -16,4 +16,3 @@ def marge(a: list, b:list) -> int:
         c.append(b[bi])
         bi += 1
     return c
-def sort

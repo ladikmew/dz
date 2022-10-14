@@ -29,9 +29,10 @@ def game():
             print('Keep up the good work!')
 
 
-b = "yes"
-while b == "yes":
-    game()
-    print('Do you like to play again?')
-    b = input()
+if __name__  =="__main__":
+    b = "yes"
+    while b == "yes":
+        game()
+        print('Do you like to play again?')
+        b = input()
 

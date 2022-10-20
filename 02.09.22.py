@@ -27,6 +27,7 @@ def game():
             print("\nYou have", tries, "tries")
         if player in a:
             print('Keep up the good work!')
+    # нет сообщения о проигрыше.
 
 
 if __name__  =="__main__":

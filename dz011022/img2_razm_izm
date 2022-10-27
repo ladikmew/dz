@@ -1,0 +1,68 @@
+from PIL import Image
+from copy import deepcopy
+import numpy as np
+
+
+class Imgel:
+    def __init__(self, filepath):
+        filename = "kotik.jpg"
+        with Image.open(filepath) as img:
+            img.load()
+        self.img = np.asarray(img)
+        self.new_img = deepcopy(self.img)
+
+    def save_img(self, filename):
+        new_img = Image.fromarray(self.new_img)
+        new_img.save(filename)
+
+    def razm(self): #слабая размытость
+        n_a = np.zeros(self.img.shape, dtype=np.uint8)
+        m_a = np.ones((11,3), dtype=np.uint8)
+        # print(n_a)
+        for irow in range(self.img.shape[0] - 11):
+            for icol in range(self.img.shape[1] - 11):
+                p = self.img[irow:irow + 11, icol:icol + 11]
+                k = p * m_a
+                r = np.mean(k)
+                n_a[irow, icol] = (r, r, r)
+        self.new_img = n_a
+
+    def razm1(self): #сильная размытость
+        n_a = np.zeros(self.img.shape, dtype=np.uint8)
+        m_a = np.ones((11,11,3), dtype=np.uint8)
+        # print(n_a)
+        for irow in range(self.img.shape[0] - 11):
+            for icol in range(self.img.shape[1] - 11):
+                p = self.img[irow:irow + 11, icol:icol + 11]
+                k = p * m_a
+                r = np.mean(k, axis=(0, 1))
+                n_a[irow, icol] = r
+        self.new_img = n_a
+
+    def izm(self):
+        n_a = np.zeros(self.img.shape, dtype=np.uint8)
+        m_a = np.array([0,-1,0],
+                       [-1,5,-1],
+                       [0,-1,0])
+        # print(n_a)
+        for irow in range(self.img.shape[0]):
+            for icol in range(self.img.shape[1] ):
+                p = self.img[irow:irow -1, icol:icol -1]
+                k = p * m_a
+                r = np.mean(k, axis=(0, 1))
+                n_a[irow, icol] = r
+        self.new_img = n_a
+
+    def izm2(self):
+        n_a = np.zeros(self.img.shape, dtype=np.uint8)
+        m_a = np.array([-1,-1,-1],
+                        [-1,-1,-1],
+                        [-1,-1,-1])
+        # print(n_a)
+        for irow in range(self.img.shape[0] - 11):
+            for icol in range(self.img.shape[1] - 11):
+                p = self.img[irow:irow + 11, icol:icol + 11]
+                k = p * m_a
+                r = np.mean(k, axis=(0, 1))
+                n_a[irow, icol] = r
+        self.new_img = n_a

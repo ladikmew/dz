@@ -1,0 +1,16 @@
+from imglyc import Imgel
+
+if __name__ =="__main__":
+    img = Imgel("kotik.jpg")
+
+    img.razm()
+    img.save_img("2.jpg")
+
+    img.razm1()
+    img.save_img("3.jpg")
+
+    img.izm()
+    img.save_img("kotik1.jpg")
+
+    img.izm2()
+    img.save_img("kotik2.jpg")

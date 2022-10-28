@@ -1,0 +1,28 @@
+def inoplanetyanin(n,k,s):
+    count = 0
+    for i in range(n):
+        for j in range(k):
+            count+=int(s[i][j])
+    r = count/(n*k)
+    print("%.4f" % r)
+    for i in range(n):
+        for j in range(k):
+            if s[i][j]<r:
+                s[i][j] = 0
+            else:
+                s[i][j] = 255
+    for i in range(n):
+        for j in range(k):
+            print(s[i][j], end = ' ')
+        print()
+
+if __name__ =="__main__":
+    n, k = map(int, input().split())
+    s = []
+    for i in range(n):
+        f = input().split()
+        for i in range(k):
+            f[i] = int(f[i])
+        s.append(f)
+    inoplanetyanin(n, k, s)
+

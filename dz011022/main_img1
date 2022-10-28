@@ -1,0 +1,13 @@
+from imglyc import Imgel
+
+if __name__ =="__main__":
+    img = Imgel("1.jpg")
+    img.grey_img()
+    img.save_img("1grey.jpg")
+
+    img.upside_down()
+    img.save_img("1upside.jpg")
+
+    img.turn_right()
+    img.save_img("1right.jpg")
+

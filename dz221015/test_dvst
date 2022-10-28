@@ -1,0 +1,20 @@
+from unittest import TestCase
+from random import randint
+from dvst import Digital
+
+
+class TestDigital(TestCase):
+    def setUp(self):
+        self.d = Digital()
+
+    def test_bin_to_dec(self):
+        a = "101001"
+        l = 41
+        i = self.d.bin_to_dec(a)
+        self.assertEqual(i, l)
+
+    def test_dec_to_bin(self):
+        b = 62
+        l = "111110"
+        h = self.d.dec_to_bin(b)
+        self.assertEqual(h, l)

@@ -1,0 +1,11 @@
+def str(a,a1,d):
+    for i in range(len(a)-len(a1)+1):
+        if a[i:i+len(a1)]==a1:
+            d.append(i)
+    print(d)
+
+if __name__ =="__main__":
+    a = input()
+    a1 = input()
+    d = []
+    str(a,a1,d)

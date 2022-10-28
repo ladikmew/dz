@@ -1,0 +1,24 @@
+class Digital:
+
+    def dec_to_bin(self, s): #перевод из десятичной в двоичную
+        dv = ''
+        while s > 0:
+            dv += str(s % 2)
+            s = s // 2
+        return (dv[::-1])
+
+    def bin_to_dec(self, d):#перевод из двоичной в десятичную
+        dv1 = 0
+        for i in range(0, len(d)):
+            h = 2 ** (len(d) - i - 1)
+            dv1 += int(int(d[i]) * h)
+
+        return (dv1)
+
+
+if __name__ == "__main__":
+    s = int(input())
+    d = input()
+    f = Digital()
+    f.dec_to_bin(s)
+    f.bin_to_dec(d)

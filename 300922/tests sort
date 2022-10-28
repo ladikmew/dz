@@ -1,0 +1,28 @@
+from unittest import TestCase
+import math
+from main import sort_ba
+from main import sort_vstavk
+from main import sort_sl
+from main import sort_mage
+
+class Test(TestCase):
+    def test_sort_vstavk(self):
+        a = sort_vstavk([-2, 0.23, 90, -1.6, sqrt(2)])
+        res = [-2, -1.6, 0.23,sqrt(2), 90]
+        self.assertEqual(a, res)
+
+    def test_sort_ba(self):
+        a = sort_ba([-2, 0.23, 90, -1.6, sqrt(2)])
+        res = [-2, -1.6, 0.23,sqrt(2), 90]
+        self.assertEqual(a, res)
+
+    def test_sort_mage(self):
+        a = sort_mage([-2, 0.23, 90, -1.6, sqrt(2)])
+        res = [-2, -1.6, 0.23,sqrt(2), 90]
+        self.assertEqual(a, res)
+
+    def test_sort_sl(self):
+        a = sort_sl([-2, 0.23, 90, -1.6, sqrt(2)])
+        res = [-2, -1.6, 0.23,sqrt(2), 90]
+        self.assertEqual(a, res)
+

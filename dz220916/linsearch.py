@@ -1,6 +1,4 @@
 
-
-
 def lin_search(a: list, s):
     for i, el in enumerate(a):
         if el == s:

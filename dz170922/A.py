@@ -1,17 +1,10 @@
-t = int(input())
-k = 0
-for i in range(t):
-    a = input()
-    k += 1
-    a-=1
-    while b != 1:
-        k += 1
-        b-=1
-    while c != 1:
-        k += 1
-        c-=1
-print(k)
-
-#if (a + b + c) < 7:
-#    print("No")
- #   break
+s = []
+for i in range(int(input())):
+    d = list(map(int, input().split()))
+    h = sum(d) // 9
+    if sum(d) % 9 == 0 and min(d) >= h:
+        s.append("YES")
+    else:
+        s.append("NO")
+for sh in s:
+    print(sh)

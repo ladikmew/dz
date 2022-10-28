@@ -1,0 +1,20 @@
+def rim(d, f):
+    p = f[len(f) - 1]
+    count = d[f[len(f) - 1]]
+    for i in range(len(f) - 2, -1, -1):
+        r = f[i]
+        if d[p] <= d[r]:
+            p = f[i]
+            count += d[p]
+          #  print(d[p])
+        else:
+            count -= d[r]
+           # print(d[r])
+       # print(count)
+    print(count)
+
+
+if __name__ == "__main__":
+    d = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    f = input()
+    rim(d, f)

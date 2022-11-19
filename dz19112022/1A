@@ -1,19 +1,24 @@
 def sd(s):
     if ((s[0] * s[1] * s[2])-s[2]) >= d:
-        print(s[0] * s[1] * s[2])
+        r.append(s[0] * s[1] * s[2])
     else:
         s[2] += d
         sd(s)
-    return (s[0] * s[1] * s[2])
+    return r
+
 
 if __name__ == "__main__":
-    s = [1]
+
+    r = []
     t = int(input())
     for i in range(t):
+        s = [1]
         d = int(input())
         i = 0
         while len(s)!=3:
             s.append(int(s[i])+d)
             i+=1
         sd(s)
+for i in range(len(r)):
+    print(r[i])
 

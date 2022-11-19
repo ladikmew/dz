@@ -1,5 +1,5 @@
 def chet(n,r):
-    n =sorted(n)
+
     r.append(n[1])
 
 def nechet(n,r):

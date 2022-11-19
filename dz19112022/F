@@ -1,0 +1,15 @@
+if __name__ == "__main__":
+    a = int(input())
+    for i in range(a):
+        t = int(input())
+        n = input()
+        s = []
+        for i in range(len(n)):
+            if n[len(n):] != 0:
+                s.pop(chr(n[len(n)-1]))
+                del(n[len(n)-1])
+            else:
+                s.pop(chr(n[len(n)-2]))
+                del(n[len(n)-1])
+                del (n[len(n) - 2])
+        print(s)

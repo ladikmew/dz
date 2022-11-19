@@ -13,3 +13,30 @@ if __name__ == "__main__":
                 del(n[len(n)-1])
                 del (n[len(n) - 2])
         print(s)
+
+
+
+
+if __name__ == "__main__":
+    a = int(input())
+    for i in range(a):
+        t = int(input())
+        k = input()
+        n = []
+        for i in range(len(k)):
+            n.append(k[i])
+        s = []
+        for i in range(len(n)):
+            if n[len(n):] != 0:
+                l = len(n)
+                c = n[l-1]
+                k = int(c)
+                cc = chr(k)
+                print(cc)
+                s.append(chr(int(n[len(n)-1])))
+                del(n[len(n)-1])
+            else:
+                s.append(chr(int(n[len(n)-2])))
+                del(n[len(n)-1])
+                del (n[len(n) - 2])
+        print(s)

@@ -1,0 +1,12 @@
+#Устюжанин,Пронина
+
+import random
+
+if __name__ == "__main__":
+    a,b = map(float, input().split())
+    f = []
+
+for i in range(5):
+    s = random.uniform(a,b-0.001)
+    f.append("%.3f"%(s))
+print(*f)

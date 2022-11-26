@@ -1,0 +1,20 @@
+#Мушников, Пронина
+
+if __name__ == "__main__":
+
+    a = list(input())
+    a.sort()
+    b = list(input())
+    b.sort()
+    s = ""
+    for i in a:
+        for j in b:
+            if i == j and i not in s:
+                s += i
+    if len(s) == 0:
+        print("NO")
+    else:
+        l = ""
+        for i in s:
+            l += i
+        print(l)

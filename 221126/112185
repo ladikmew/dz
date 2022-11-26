@@ -1,5 +1,6 @@
 #Мушников, Пронина
 
+
 a, b = map(int, input().split())
 s = ''
 f = 1

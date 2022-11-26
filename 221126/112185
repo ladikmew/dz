@@ -1,0 +1,19 @@
+#Мушников, Пронина
+
+a, b = map(int, input().split())
+s = ''
+f = 1
+
+if a>=0:
+    f = 1
+if a<0:
+    f = -1
+    a = abs(a)
+while a >= b:
+    s += str(a % b)
+    a //= b
+s += str(a)
+if f==1:
+    print(s[::-1])
+else:
+    print("-"+s[::-1])

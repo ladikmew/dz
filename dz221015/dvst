@@ -1,24 +1,68 @@
 class Digital:
 
-    def dec_to_bin(self, s): #перевод из десятичной в двоичную
+    def dec_to_bin(self, s): #перевод из десятичной в двоичную целых чисел
         dv = ''
-        while s > 0:
-            dv += str(s % 2)
-            s = s // 2
-        return (dv[::-1])
+        if s==0:
+            return 0
+        else:
+            while s > 0:
+                dv += str(s % 2)
+                s = s // 2
+            # print(type(dv[::-1]))
+            return (dv[::-1])
 
-    def bin_to_dec(self, d):#перевод из двоичной в десятичную
+    def bin_to_dec(self, d):#перевод из двоичной в десятичную целых чисел
         dv1 = 0
         for i in range(0, len(d)):
             h = 2 ** (len(d) - i - 1)
             dv1 += int(int(d[i]) * h)
-
         return (dv1)
+
+    def float_dec_to_bin(self,g: float): #перевод из десятичной в двоичную вещественных чисел
+        g_z = int(g)
+        g_z1 = g_z
+        g_d = str(g-int(g))
+        g_d = int(g_d[2:])
+        #print(g_d)
+        g_z = self.dec_to_bin(g_z)
+        #print(g_z)
+        c = str(g_z)+"."
+        #print(c)
+        g_d = self.dec_to_bin(g_d)
+        #print(g_d)
+        c += g_d
+        #print(c)
+        return c
+
+    def float_bin_to_dec(self, r: float): #перевод из двоичной в десятичную вещественных чисел
+        r1 = ''
+        h = 0
+        for i in r:
+            while i!='.':
+                r1+=i
+                h+=1
+        r_z = r1
+        r_z1 = r_z
+        r_d = int(r[h+1:])
+        #print(g_d)
+        r_z = self.bin_to_dec(r_z)
+        print(r_z)
+        l = str(r_z) + "."
+
+        # print(c)
+        r_d = self.bin_to_dec(r_d)
+        l += r_d
+        return l
+
 
 
 if __name__ == "__main__":
     s = int(input())
     d = input()
+    g = float(input())
+    r = input()
     f = Digital()
-    f.dec_to_bin(s)
-    f.bin_to_dec(d)
+    print(f.dec_to_bin(s))
+    print(f.bin_to_dec(d))
+    print(f.float_dec_to_bin(g))
+    print(f.float_bin_to_dec(r))

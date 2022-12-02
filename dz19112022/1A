@@ -1,24 +1,25 @@
-def sd(s):
-    if ((s[0] * s[1] * s[2])-s[2]) >= d:
-        r.append(s[0] * s[1] * s[2])
+t = int(input())
+s = []
+def prostik(a):
+    if a < 2:
+        return 0
+    for i in range(2, int(a ** 0.5 + 1)):
+        if a % i == 0:
+            return 0
     else:
-        s[2] += d
-        sd(s)
-    return r
+        return 1
 
+for i in range(t):
+    d = int(input())
+    delit2 = 1+d
 
-if __name__ == "__main__":
+    while prostik(delit2)!=1:
+        delit2+=1
+    delit3 = delit2+d
+    while prostik(delit3)!=1:
+        delit3+=1
+    s.append(delit2*delit3)
 
-    r = []
-    t = int(input())
-    for i in range(t):
-        s = [1]
-        d = int(input())
-        i = 0
-        while len(s)!=3:
-            s.append(int(s[i])+d)
-            i+=1
-        sd(s)
-for i in range(len(r)):
-    print(r[i])
+for i in s:
+    print(i)
 

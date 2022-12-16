@@ -2,7 +2,7 @@ def bin_search(a, s):
     i = 0
     l = len(a)
     while l - i > 1:
-        m:int = (l + i) // 2
+        int(m) = (l + i) // 2
         if a[m] > s:
             l = m
         else:

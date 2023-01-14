@@ -1,0 +1,39 @@
+from unittest import TestCase
+from struct_data import DoubleLinkedList
+
+
+class TestDoubleLinkedList(TestCase):
+    #def setUp(self):
+        #self.a = DoubleLinkedList()
+
+    def test_append1(self):
+        self.a = DoubleLinkedList()
+        l = self.a.len()
+        self.a.append(5)
+        self.assertEqual(self.a.len(), l + 1)
+
+    def test_len1(self):
+        self.a = DoubleLinkedList()
+        r = 0
+        for i in self.a:
+            r+=1
+        self.assertEqual(self.a.len(),r)
+
+    def test_insert(self):
+        self.a = DoubleLinkedList()
+        self.a.append(1)
+        l = self.a.len()
+        self.a.insert(0,5)
+        self.assertEqual(self.a.len(), l + 1)
+
+    def test_search(self):
+        self.a = DoubleLinkedList()
+        self.a.append(1)
+
+
+
+
+
+
+
+

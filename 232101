@@ -1,0 +1,22 @@
+f = ''
+h = 0
+for i in k:
+#     if len(i)==2:
+#         for j in i:
+#             h+=1
+#             f+=j
+#             if h==1:
+#                 f+=", "
+#         h = 0
+#         f+='\n'  
+#     else:
+#         for j in range(len(i)-1):
+#             for m in range(2):
+#                 f+=i[j]
+#                 f+=", "
+#                 f+=i[j+1]
+#             f+='\n'
+            
+            
+            
+# print(f)

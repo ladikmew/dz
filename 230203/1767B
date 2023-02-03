@@ -7,11 +7,8 @@ for i in range(t):
 
     n = int(input())
     a = list(map(int, input().split()))
-    u = sorted(a)
-    p = set(u)
-    for i in p:
-        l.append(i)
-    for i in range(len(l)):
+    l = sorted(a)
+    for i in range(n):
         if int(l[i]) > a[0]:
             if (a[0] + l[i]) % 2 == 0:
                 a[0] = (a[0] + l[i]) // 2

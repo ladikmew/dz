@@ -38,7 +38,7 @@ class BFS:
             else:
                 squeue += self.spisok(self.vk.get_edges(node))
                 vizited += node
-        depth-=1
+            depth-=1
         return rez
 bfs = BFS(vk)
 

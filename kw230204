@@ -1,0 +1,44 @@
+import time
+from collections import deque
+
+rez = []
+h = []
+for i in edges:
+        for j in i:
+            h.append(j)
+h = set(h)
+h = list(h)
+for i in edges:
+    rez.append(i)
+
+class BFS:
+    def __init__(self,vk):
+        self.vk = vk
+    def spisok(self,h):
+        h = []
+        for i in edges:
+            for j in i:
+                h.append(j)
+        h = set(h)
+        h = list(h)
+        return h
+        
+    def run(self,depth = 3):
+        while depth:
+            squeue = deque()
+            squeue+=h
+            vizited = []
+            while squeue:
+                node = squeue.popleft()
+                if not node in vizited:
+                    f = self.vk.get_edges(node)
+                    for i in f:
+                        rez.append(i)
+                else:
+                    squeue += self.spisok(self.vk.get_edges(node))
+                    vizited += node
+            depth-=1
+        return rez
+bfs = BFS(vk)
+
+bfs.run(1)

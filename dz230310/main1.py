@@ -1,8 +1,9 @@
 import pygame
+import random
 
-W, H = 800, 800
+W, H = 100, 100
 count_rock = 80
-FPS = 100
+FPS = 20
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GRAY = (125, 125, 125)
@@ -11,6 +12,7 @@ GREEN = (0, 200, 64)
 YELLOW = (225, 225, 0)
 PINK = (230, 50, 230)
 shushunchik_block = 10
+allhead = []
 
 
 # shushunchik_block1 = Point(W // 2, H // 2)
@@ -20,6 +22,7 @@ def draw_food(foodx, foody):
 
 
 def draw_shushunchik(head):
+    allhead.append((head.x,head.y))
     pygame.draw.rect(screen, PINK, (head.x, head.y, shushunchik_block, shushunchik_block))
 
 
@@ -62,10 +65,28 @@ class Game:
 
     def shushunchik_down(self):
         self.head_change = Point(0, shushunchik_block)
-        
-    def snake_eat(self):
-        if self.head == self.food:
-            self.length_snake += 1
+
+    def move(self):
+        a = random.randint(1, 10)
+        if a == 5 or a == 8:
+            game.shushunchik_left()
+        elif a == 6 or a == 9 or a == 1:
+            game.shushunchik_up()
+        elif a == 3 or a == 10 or a == 5:
+            game.shushunchik_down()
+        else:
+            game.shushunchik_right()
+
+    def shushunchik_left_field(self):
+        # если змея вышла за границы поля
+        if self.head.x >= W:
+            self.head.x = 0
+        elif self.head.x < 0:
+            self.head.x = W
+        elif self.head.y >= H:
+            self.head.y = 0
+        elif self.head.y < 0:
+            self.head.y = H
 
 
 if __name__ == "__main__":
@@ -84,24 +105,17 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 # прерываем основной цикл (чтобы закрыть потом приложение)
                 running = False
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    # обновляем значения на сколько и куда надо сместить голову змеи
-                    game.shushunchik_left()
-                elif event.key == pygame.K_RIGHT:
-                    game.shushunchik_right()
-                elif event.key == pygame.K_UP:
-                    game.shushunchik_up()
-                elif event.key == pygame.K_DOWN:
-                    game.shushunchik_down()
-        # game.shushunchik_left()
-        game.shushunchik_step()
-        screen.fill(GRAY)
-        for i in range(0, 801):
-            for j in range(0, 801):
-                draw_food(i, j)
-        draw_shushunchik(game.head)
+        game.move()
 
+        game.shushunchik_step()
+        # если шушунчик покинул поле
+        game.shushunchik_left_field()
+        screen.fill(GRAY)
+        for i in range(0, 100):
+            for j in range(0, 100):
+                if not (i == game.head.x) and not (j == game.head.y) and (i,j) not in allhead:
+                    draw_food(i, j)
+        draw_shushunchik(game.head)
         pygame.display.update()
         clock.tick(FPS)
 

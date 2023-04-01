@@ -1,0 +1,47 @@
+a_max = []
+a_min = []
+a_max1 = []
+a_min1 = []
+a = []
+with open("inf_26_04_21_27a.txt") as f:
+    for i, line in enumerate(f.readlines()):
+        if i == 0:
+            continue
+        a1, a2 = list(map(int, line.strip().split()))
+        if a2 % 2:
+            # print(max(a1, a2), min(a1, a2))
+            a_max.append(max(a1, a2))
+            a_min.append(min(a1, a2))
+            s1 = sum(a_max)
+            s2 = sum(a_min)
+if s1%2==0 and s2%2==1:
+    print(s1+s2)
+elif s1%2==0 and s2%2==0:
+    for i in range(len(a_max)):
+        if a_max[i]%2==0:
+            if a_min[i]%2==1:
+                a_max1.append(a_max[i])
+                a_min1.append(a_min[i])
+    for i in range(0,len(a_max1)):
+               a.append(a_max1[i]+a_min1[i])
+    print(s1+s2-min(a))
+elif s1%2==1 and s2%==1:
+    for i in range(len(a_max)):
+        if a_max[i]%2==1:
+            if a_min[i]%2==0:
+                a_max1.append(a_max[i])
+                a_min1.append(a_min[i])
+    for i in range(0,len(a_max1)):
+               a.append(a_max1[i]+a_min1[i])
+    print(s1+s2-min(a))
+elif s1%2==1 and s2%2==0:
+    for i in range(len(a_max)):
+        if a_max[i]%2==1:
+            if a_min[i]%2==1:
+                a_max1.append(a_max[i])
+                a_min1.append(a_min[i])
+    for i in range(0,len(a_max1)):
+               a.append(a_max1[i]+a_min1[i])
+    print(s1+s2-min(a))
+    
+    

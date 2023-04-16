@@ -1,0 +1,145 @@
+import pygame
+import random
+import numpy as np
+
+WIDTH = 500
+HEIGHT = 500
+W = 500
+FPS = 100
+# Задаем цвета
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+Violet = (238, 130, 238)
+DarkViolet = (148, 0, 211)
+BlueViolet = (138, 43, 226)
+Magenta = (255, 0, 255)
+MediumPurple = (147, 112, 219)
+MediumOrchid = (186, 85, 211)
+Plum =(221, 160, 221)
+color = [DarkViolet,BlueViolet,MediumPurple, MediumOrchid,Magenta,Violet,Plum]
+r = 5
+x = 500
+vx = 1
+k = 1
+l = 1
+dt = 1
+speed = 0
+change = 0
+xs = 200
+ys = 300
+vxs = random.random()
+vys = random.random()
+ybegin = 450
+xbegin = 200
+vxend = 0.7
+yend = 450
+xend = 300
+# for i in range(10000):
+#     xs[i] = random.random() * WIDTH
+#     ys[i] = random.random() * HEIGHT
+#     vxs[i] = random.random()
+#     vys[i] = random.random()
+
+#print(xs, ys, vxs, vys)
+
+def message(msg, color,f,g):
+    msg1 = font.render(msg, True, color)
+    screen.blit(msg1, (f,g))
+
+# def mes(score):
+#     value = message.render("temperature: " + tmp, True, WHITE)
+#     dis.blit(value, [0, 0])
+# def draw_line(surface: pygame.surface.Surface, color: pygame.color.Color, x: list[int], y: list[int]) -> None:
+#     y = y + vx * dt
+#     x = x + vx * dt
+#     for i in range(1, len(xs)):
+#         x2 = xs[i]
+#         y2 = ys[i]
+#         pygame.draw.line(surface, color, (x1, y1), (x2, y2))
+#         # print(x1,y1, x2, y2)
+#         x1, y1 = x2, y2
+
+pygame.init()
+# pygame.mixer.init()
+font = pygame.font.SysFont(None, 24)
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("My Game")
+clock = pygame.time.Clock()
+# Цикл игры
+running = True
+
+while running:
+    # Держим цикл на правильной скорости
+    clock.tick(FPS)
+    # Ввод процесса (события)
+    for event in pygame.event.get():
+        # Проверяем хотят ли выйти
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                change = -(vxend)
+            elif event.key == pygame.K_RIGHT:
+                change = vxend
+
+    # if (xend<W and xbegin<W-100):
+    #     xbegin += change
+    #     xend += change
+    # if xend>W and xbegin>W-100:
+    #     W+=10
+    xbegin += change
+    xend += change
+    # if xbegin<0:
+    #     vxend = np.abs(vxend)
+    # if xend>WIDTH:
+    #     vxend = -(np.abs(vxend))
+    # elif (xend>100 and xbegin>0):
+    #     xbegin += change
+    #     xend += change
+
+    ys = ys + vys * dt
+    xs = xs + vxs * dt
+    if xs<0:
+        vxs = np.abs(vxs)
+    if ys<0:
+        vys = np.abs(vys)
+    if xs > WIDTH:
+        vxs = -(np.abs(vxs))
+    if ys>445 and xs>xbegin and xs<xend:
+        vys = -(np.abs(vys))
+
+    if ys>460:
+        running = False
+
+
+
+    #     vxs[xs < 0] = np.abs(vxs[xs < 0])
+    #     vys[ys < 0] = np.abs(vys[ys < 0])
+    #     vxs[xs > x] = -(np.abs(vxs[xs > x])+0.5)
+    #     vys[ys > WIDTH] = -np.abs(vys[ys > WIDTH]-0.5)
+    #     speed = np.sum(np.sum((vxs[xs > x])**2)+np.sum(vys[ys > WIDTH]**2)+np.sum(vys[ys < 0]**2)+np.sum(vxs[xs < 0]**2))
+    #     #print(speed)
+    #
+    #
+    #     tmp = (np.mean(np.sqrt(vxs**2 + vys**2)))**2
+    # else:
+    #     running = False
+
+    screen.fill(BLACK)
+    pygame.draw.circle(screen, color[random.randint(0,6)], [xs, ys], r)
+    #pygame.draw.aaline(screen,WHITE,(x,0),(10,10))
+    pygame.draw.aaline(screen, WHITE,
+                       [xbegin, ybegin],
+                       [xend, yend])
+    #message(f"temperature:{tmp}", WHITE,15,25)
+    #message(f"volume:{x*500}", WHITE,15,10)
+    #message(f"pressure:{speed/(x+500)*2}", WHITE, 15, 40)
+    pygame.display.flip()
+
+pygame.quit()
+
+if __name__ == "__main__":
+    pass

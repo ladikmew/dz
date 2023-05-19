@@ -11,7 +11,14 @@ from collections import deque
 #             if dfs(n, finish,al,vizited):
 #                 return True
 #     return False
-
+def dfs(graph, start, visited):
+    if visited is None:
+        visited = set()
+    visited.append(start)
+    for n in graph[start]:
+        if not n in visited:
+            dfs(graph, n, visited)
+    return visited
     
     
     

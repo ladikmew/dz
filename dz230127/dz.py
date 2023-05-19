@@ -1,28 +1,18 @@
 from typing import Dict, List
 from collections import deque
-# def dfs(al: Dict[str, List[str]], start: str, finish: str,visited: List[str]) -> List[str]:
-#         if start == finish:
-#         return True
-#     if start in vizited:
-#         return False
-#     vizited += start
-#     for n in al[start]:
-#         if not n in vizited:
-#             if dfs(n, finish,al,vizited):
-#                 return True
-#     return False
-def dfs(graph, start, visited):
+
+
+def dfs(al, start, visited):
     if visited is None:
         visited = set()
     visited.append(start)
-    for n in graph[start]:
+    for n in al[start]:
         if not n in visited:
-            dfs(graph, n, visited)
+            dfs(al, n, visited)
     return visited
+   
     
-    
-    
-def bfs(start, finish, graph):
+def bfs(start, finish, al):
     queue = deque([start])
     visited = {start}
 
@@ -31,29 +21,35 @@ def bfs(start, finish, graph):
         if current == finish:
             break
 
-        nnodes = graph[current]
+        nnodes = al[current]
         for nnode in nnodes:
             if nnode not in visited:
                 queue.append(nnode)
                 visited[nnode] = current
     return visited
 
-# def bfs(al: Dict[str, List[str]], start: str, finish: str) -> List[str]:
-#     squeue = deque()
-#     squeue+=al[start]
-#     vizited = []
-#     while squeue:
-#         node = squeue.popleft()
-#         if not node in vizited:
-#             if node == search:
-#                 return True
-#             else:
-#                 squeue+=graf[node]
-#                 vizited+=[node]
-#     return False
+
+def adjency_list_from_file(filename: str):
+    k = []
+    g = []
+    b = [[0] * len(filename) for _ in range(len(filename))]
+
+    for i in range(len(filename)):
+        b[int(filename[i][0]) - 1][int(filename[i][1]) - 1] = 1
+        b[int(filename[i][1]) - 1][int(filename[i][0]) - 1] = 1
+
+    # print(b)
+    for i in b:
+        for j in range(len(i)):
+            if i[j] == 1:
+                g.append(j + 1)
+        k.append(g)
+        g = []
+    al = {id + 1: k[id] for id in range(len(k))}
+    return al
 
 
-def main(filename: str, from_city: str, to_city: str):
+  def main(filename: str, from_city: str, to_city: str):
         pass
 
 

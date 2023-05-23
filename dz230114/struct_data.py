@@ -13,6 +13,7 @@ class ArrayList:
 
     def len(self):  # возвращает длину массива
         """
+        возвращает длину массива
         """
         return self._len
 
@@ -212,26 +213,47 @@ class Stack:
 
 class Queue:
     """
-
+    класс очереди
+    def push(self, value) - добавляет элемент в конец очереди
+    def pop(self) - удаляет первый элемент из очереди и возвращает его
+    def top(self) - возвращает значение последнего элемента
+    def len(self) - возвращает длину очереди
     """
 
     def __init__(self):
         self.linked_list = DoubleLinkedList()
 
     def push(self, value):  # добавление элемента в конец очереди
+        """
+        Добавление элемента в конец очереди
+        :param value: элемент
+        :return: None
+        """
         self.linked_list.append(value)
 
         # self.finish = self.memory_addr[value].link_prev
 
     def pop(self):  # удаление первого элемента из очереди
+        """
+        Удаляет первый элемент из очереди
+        :return: удаленный элемент
+        """
         value = self.linked_list.geti(self.linked_list.start)
         self.linked_list.remove(self.linked_list.start)
         return value
         # self.start = self.memory_addr[0].link_next
 
-    def top(self):  # возвращает адрес последнего элемента
+    def top(self):  # возвращает значение последнего элемента
+        """
+        Возвращает значение последнего элемента
+        :return: значение последнего элемента
+        """
         value = self.linked_list.geti(self.linked_list.start)
         return value
 
     def len(self):  # возвращает длину очереди
+        """
+        Возвращает длину очереди
+        :return: длина очереди
+        """
         return self.linked_list.len

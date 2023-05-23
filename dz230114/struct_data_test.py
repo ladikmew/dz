@@ -89,50 +89,49 @@ class TestArrayList(TestCase):
 
 
 class TestQueue(TestCase):
-
-    def pop(self):
+    def test_pop(self):
         self.a = Queue()
         l = self.a.len()
         self.a.pop()
         self.assertEqual(self.a.len(), l - 1)
 
-    def push(self):
+    def test_push(self):
         self.a = Queue()
         l = self.a.len()
         self.a.push(1)
         self.assertEqual(self.a.len(), l + 1)
 
-    def top(self):
+    def test_top(self):
         self.a = Queue()
         r = self.a[len(self.a) - 1]
         self.a.top()
         self.assertEqual(self.a, r)
 
-    def len(self):
+    def test_len(self):
         self.a = Queue()
         r = len(self.a)
         self.assertEqual(self.a.len(), r)
 
 
 class TestStack(TestCase):
-    def pop(self):
+    def test_pop(self):
         self.a = Stack()
         l = self.a.len()
         self.a.pop()
         self.assertEqual(self.a.len(), l - 1)
 
-    def len(self):
+    def test_len(self):
         self.a = Stack()
         r = len(self.a)
         self.assertEqual(self.a.len(), r)
 
-    def push(self):
+    def test_push(self):
         self.a = Stack()
         l = self.a.len()
         self.a.push(1)
         self.assertEqual(self.a.len(), l + 1)
 
-    def top(self):
+    def test_top(self):
         self.a = Stack()
         r = self.a[len(self.a) - 1]
         self.a.top()

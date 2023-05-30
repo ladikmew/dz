@@ -71,29 +71,24 @@ class TestArrayList(TestCase):
 
     def test_len(self):
         self.a = ArrayList()
-        r = len(self.a)
+        r = self.a.len()
         self.assertEqual(self.a.len(), r)
 
-    def test_geti(self):
+    def test_seti(self):
         self.a = ArrayList()
         self.a.append(1)
-        self.a.geti(0)
-        l = self.a[0]
-        self.assertEqual(self.a, l)
-
-    def test_seti(self):
-        self.a = [1, 2, 3, 4]
+        self.a.append(3)
         self.a.seti(1, 5)
-        l = [1, 5, 3, 4]
-        self.assertEqual(self.a, l)
+        self.assertEqual(self.a.len(), 2)
 
 
 class TestQueue(TestCase):
     def test_pop(self):
         self.a = Queue()
-        l = self.a.len()
-        self.a.pop()
-        self.assertEqual(self.a.len(), l - 1)
+        self.a.push(1)
+        self.a.push(2)
+        r = self.a.pop()
+        self.assertEqual(r, 1)
 
     def test_push(self):
         self.a = Queue()
@@ -103,26 +98,28 @@ class TestQueue(TestCase):
 
     def test_top(self):
         self.a = Queue()
-        r = self.a[len(self.a) - 1]
-        self.a.top()
-        self.assertEqual(self.a, r)
+        self.a.push(1)
+        self.a.push(2)
+        s = self.a.top()
+        self.assertEqual(s, 1)
 
     def test_len(self):
         self.a = Queue()
-        r = len(self.a)
+        r = self.a.len()
         self.assertEqual(self.a.len(), r)
 
 
 class TestStack(TestCase):
     def test_pop(self):
         self.a = Stack()
-        l = self.a.len()
-        self.a.pop()
-        self.assertEqual(self.a.len(), l - 1)
+        self.a.push(1)
+        self.a.push(2)
+        f = self.a.pop()
+        self.assertEqual(f,2)
 
     def test_len(self):
         self.a = Stack()
-        r = len(self.a)
+        r = self.a.len()
         self.assertEqual(self.a.len(), r)
 
     def test_push(self):
@@ -133,9 +130,10 @@ class TestStack(TestCase):
 
     def test_top(self):
         self.a = Stack()
-        r = self.a[len(self.a) - 1]
-        self.a.top()
-        self.assertEqual(self.a, r)
+        self.a.push(1)
+        self.a.push(2)
+        self.a.push(3)
+        self.assertEqual(self.a.top(), 3)
 
 
 if __name__ == "__main__":

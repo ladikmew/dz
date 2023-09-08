@@ -21,12 +21,14 @@ int main()
             maximum = Arraylist[i];
         }
     }
-    cout<<maximum<<endl;
+    
     
       for (int i=0; i<size;i++)
     {
         cout<<Arraylist[i]<<" ";
     }
+    
+    cout<<endl<<maximum<<endl;
     
     return 0;
 }

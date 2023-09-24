@@ -1,12 +1,12 @@
 class Solution:
     def value_Power(n):
+        if n==1:
+            return 0
         count = 0
-        while n!=1:
-            count+=1
-            if n%2==0:
-                n = n//2
-            else:
-                n= (3*n)+1
+        if n%2==0:
+            count = 1 + Solution.value_Power(n/2)
+        else:
+            count = 1 + Solution.value_Power((3*n)+1)
         return count
 
     def getKth(self, lo: int, hi: int, k: int) -> int:

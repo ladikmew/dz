@@ -1,17 +1,21 @@
 import requests
 import sqlite3 as sql
+from datetime import date
 from bs4 import BeautifulSoup
-from PyQt5.QtWidgets import QApplication,QWidget,QTextEdit,QVBoxLayout,QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QPushButton
 import sys
 
+with sql.connect('data.db') as db:
+    cursor = db.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS news(new VARCHAR, datetime VARCHAR)''')
 
 
-class Get_News_From_Site(object):
+class Get_News_From_Site():
     def Getting_News(self, url):
         all_news = []
         req = requests.get(url)
         src = BeautifulSoup(req.text, "html.parser")
-        #print(src)
+        # print(src)
         for i in src.findAll('a', attrs={"class": "list-item__title color-font-hover-only"}):
             all_news.append(i.string)
             #   all_news.append('\n')
@@ -22,70 +26,56 @@ class Get_News_From_Site(object):
         req = requests.get(url)
         src = BeautifulSoup(req.text, "html.parser")
         for i in src.findAll('div', attrs={"class": "list-item__date"}):
-            all_time.append(i.string+" 16.12.2023")
+            all_time.append(i.string + " " + str(date.today()))
         return all_time
 
 
 class Creating_Database(Get_News_From_Site):
-
     def Base(self):
         t = Get_News_From_Site()
         self.new = t.Getting_News("https://ria.ru/world/")
         self.time = t.Getting_Time("https://ria.ru/world/")
-        with sql.connect('data1.db') as self.db:
-            self.cursor = self.db.cursor()
-            self.cursor.execute('''CREATE TABLE IF NOT EXISTS news(new VARCHAR, datetime VARCHAR)''')
-            for i in range(len(self.new)):
-                #print(self.new[i], self.time[i])
-                self.cursor.execute(f'INSERT INTO news VALUES(?,?)',(self.new[i],self.time[i],) )
-                self.db.commit()
+        for i in range(len(self.new)):
+            # print(self.new[i], self.time[i])
+            cursor.execute(f'INSERT INTO news VALUES(?,?)', (self.new[i], self.time[i],))
+            db.commit()
 
-            self.cursor.execute('SELECT * FROM news')
-            res = self.cursor.fetchall()
+            cursor.execute('SELECT * FROM news')
+            res = cursor.fetchall()
         return res
-
-class Get_Data(Creating_Database):
-    def __init__(self):
-        h = Creating_Database()
-        self.data = h.Base()
-        for i in self.data:
-            print(i)
 
 
 class App(QWidget,Creating_Database):
-    def stop(self, parent=None):
-        #super().__init__(parent)
-        o = Creating_Database()
-        self.items = o.Base()
-        return self.items
+    def __init__(self):
+        super(App, self).__init__()
+        self.database = Creating_Database()
+        self.items = self.database.Base()
+    def setup_Ui(self):
+        print(self.items)
+
+        self.setWindowTitle("QTextEdit")
+        self.resize(500, 600)
+
+        self.textEdit = QTextEdit()
+        self.btnPress1 = QPushButton("Get News")
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.textEdit)
+        layout.addWidget(self.btnPress1)
+        self.setLayout(layout)
+
+        self.btnPress1.clicked.connect(self.btnPress1_Clicked)
+
+    def btnPress1_Clicked(self):
+        self.textEdit.setPlainText('\n\n'.join(map(lambda x: f'{x[0]} {x[1]}', self.items)))
 
 
-    #     self.setWindowTitle("QTextEdit")
-    #     self.resize(500, 600)
-    #
-    #     self.textEdit = QTextEdit()
-    #     self.btnPress1 = QPushButton("Get News")
-    #
-    #     layout = QVBoxLayout()
-    #     layout.addWidget(self.textEdit)
-    #     layout.addWidget(self.btnPress1)
-    #     self.setLayout(layout)
-    #
-    #     self.btnPress1.clicked.connect(self.btnPress1_Clicked)
-    #
-    # def btnPress1_Clicked(self):
-    #     for i in self.items:
-    #         print("1")
-    #         self.textEdit.setPlainText(f"{i}")
-    #
+
 
 
 if __name__ == '__main__':
-        # app = QApplication(sys.argv)
-        # win = App()
-        # win.show()
-        # sys.exit(app.exec_())
-        # c = Creating_Database()
-        # print(c.Base())
-        f = App()
-        print(f.stop())
+    app = QApplication(sys.argv)
+    f = App()
+    f.setup_Ui()
+    f.show()
+    sys.exit(app.exec_())

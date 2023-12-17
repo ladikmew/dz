@@ -26,7 +26,7 @@ class Ui_CreateTask(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName('MainWindow')
         MainWindow.resize(581, 580)
-        MainWindow.setStyleSheet('background-color: #524b4b;')
+        #MainWindow.setStyleSheet('background-color: #524b4b;')
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName('centralwidget')
 
@@ -37,7 +37,7 @@ class Ui_CreateTask(object):
         self.label.setFont(font)
         self.label.setText('Создание задания')
         self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.label.setStyleSheet('color: white;')
+        #self.label.setStyleSheet('color: white;')
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName('label')
 
@@ -84,7 +84,7 @@ class Ui_ShowTasks(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName('MainWindow')
         MainWindow.resize(581, 580)
-        MainWindow.setStyleSheet('background-color: #524b4b;')
+       # MainWindow.setStyleSheet('background-color: #524b4b;')
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName('centralwidget')
         self.items = cursor.execute('SELECT * FROM homeworks')
@@ -97,7 +97,7 @@ class Ui_ShowTasks(object):
         self.label.setFont(font)
         self.label.setText('Список заданий')
         self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.label.setStyleSheet('color: white;')
+        #self.label.setStyleSheet('color: white;')
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName('label')
 
@@ -110,7 +110,7 @@ class Ui_ShowTasks(object):
         self.pushButton.setText('Создать задание')
 
         for key, i in enumerate(self.items):
-            print('aaa', key, i)
+           # print('aaa', key, i)
             self.renderitems.append(QtWidgets.QPushButton(self.centralwidget))
             self.renderitems[key].setGeometry(QtCore.QRect(20, 70 + key * 50, 540, 41))
             font = QtGui.QFont()
@@ -118,7 +118,7 @@ class Ui_ShowTasks(object):
             self.renderitems[key].setFont(font)
             self.renderitems[key].setText(f'{key + 1}. {i[5]}, дедлайн: {i[1]}')
             self.renderitems[key].setLayoutDirection(QtCore.Qt.LeftToRight)
-            self.renderitems[key].setStyleSheet('color: white;')
+            #self.renderitems[key].setStyleSheet('color: white;')
             self.renderitems[key].setObjectName(i[5])
 
             def handler():

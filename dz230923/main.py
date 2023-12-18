@@ -1,4 +1,4 @@
-class Solution:
+ class Solution:
     def value_Power(n):
         if n==1:
             return 0

@@ -44,7 +44,6 @@ class Creating_Database(Get_News_From_Site):
             res = cursor.fetchall()
         return res
 
-
 class App(QWidget,Creating_Database):
     def __init__(self):
         super(App, self).__init__()
@@ -68,10 +67,6 @@ class App(QWidget,Creating_Database):
 
     def btnPress1_Clicked(self):
         self.textEdit.setPlainText('\n\n'.join(map(lambda x: f'{x[0]} {x[1]}', self.items)))
-
-
-
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

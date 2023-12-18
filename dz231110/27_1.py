@@ -1,5 +1,6 @@
 f = open("27_A.txt")
-n, v = map(int, f.readline().split())
+n = int(f.readline())
+v = 36
 a = []
 for i in range(n):
     s, k = map(int, f.readline().split())

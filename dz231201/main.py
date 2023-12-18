@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 import datetime
 import uuid
 
-db = sqlite3.connect('database.db')
+db = sqlite3.connect('database1.db')
 cursor = db.cursor()
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS homeworks(
@@ -18,8 +18,8 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS homeworks(
 
 db.commit()
 
-for i in cursor.execute('SELECT * FROM homeworks'):
-    print(i)
+# for i in cursor.execute('SELECT * FROM homeworks'):
+#     print(i)
 
 
 class Ui_CreateTask(object):
@@ -33,7 +33,7 @@ class Ui_CreateTask(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(140, 20, 311, 41))
         font = QtGui.QFont()
-        font.setPointSize(26)
+        font.setPointSize(22)
         self.label.setFont(font)
         self.label.setText('Создание задания')
         self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -68,12 +68,12 @@ class Ui_CreateTask(object):
         self.subject.setObjectName('subject')
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(190, 350, 211, 51))
+        self.pushButton.setGeometry(QtCore.QRect(170,370, 260,50))
         font = QtGui.QFont()
-        font.setPointSize(24)
+        font.setPointSize(18)
         self.pushButton.setFont(font)
         self.pushButton.setObjectName('pushButton')
-        self.pushButton.setText('submit')
+        self.pushButton.setText('Записать задание')
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -93,7 +93,7 @@ class Ui_ShowTasks(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(140, 20, 311, 41))
         font = QtGui.QFont()
-        font.setPointSize(26)
+        font.setPointSize(24)
         self.label.setFont(font)
         self.label.setText('Список заданий')
         self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -102,7 +102,7 @@ class Ui_ShowTasks(object):
         self.label.setObjectName('label')
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(190, 350, 211, 51))
+        self.pushButton.setGeometry(QtCore.QRect(110,500,370,50))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.pushButton.setFont(font)
@@ -110,11 +110,10 @@ class Ui_ShowTasks(object):
         self.pushButton.setText('Создать задание')
 
         for key, i in enumerate(self.items):
-           # print('aaa', key, i)
             self.renderitems.append(QtWidgets.QPushButton(self.centralwidget))
-            self.renderitems[key].setGeometry(QtCore.QRect(20, 70 + key * 50, 540, 41))
+            self.renderitems[key].setGeometry(QtCore.QRect(20, 70 + key * 60, 540, 51))
             font = QtGui.QFont()
-            font.setPointSize(26)
+            font.setPointSize(15)
             self.renderitems[key].setFont(font)
             self.renderitems[key].setText(f'{key + 1}. {i[5]}, дедлайн: {i[1]}')
             self.renderitems[key].setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -136,11 +135,10 @@ class Ui_ShowTasks(object):
         self.hide()
 
 
-class Ui_ShowTask(object):
+class Ui_ShowTask():
     def setupUi(self, MainWindow, id):
         MainWindow.setObjectName('MainWindow')
         MainWindow.resize(581, 580)
-        MainWindow.setStyleSheet('background-color: #524b4b;')
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName('centralwidget')
         self.task = cursor.execute(f'SELECT * FROM homeworks WHERE id="{id}";')
@@ -149,35 +147,43 @@ class Ui_ShowTask(object):
             self.task = i
 
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(140, 20, 311, 41))
+        self.label.setGeometry(QtCore.QRect(60, 50, 500, 41))
         font = QtGui.QFont()
-        font.setPointSize(26)
+        font.setPointSize(22)
         self.label.setFont(font)
-        self.label.setText(f'Задание по {i[5]}')
+        self.label.setText(f'Предмет:{i[5]}')
         self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.label.setStyleSheet('color: white;')
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName(i[6])
 
         self.created_date = QtWidgets.QLabel(self.centralwidget)
-        self.created_date.setGeometry(QtCore.QRect(95, 60, 400, 41))
+        self.created_date.setGeometry(QtCore.QRect(95, 130, 400, 41))
         font = QtGui.QFont()
-        font.setPointSize(26)
+        font.setPointSize(18)
         self.created_date.setFont(font)
         self.created_date.setText(f'Дата создания: {i[0]}')
         self.created_date.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.created_date.setStyleSheet('color: white;')
         self.created_date.setAlignment(QtCore.Qt.AlignCenter)
         self.created_date.setObjectName(i[0])
 
         self.deadline = QtWidgets.QLabel(self.centralwidget)
-        self.deadline.setGeometry(QtCore.QRect(95, 100, 400, 41))
+        self.deadline.setGeometry(QtCore.QRect(95, 210, 400, 41))
         font = QtGui.QFont()
-        font.setPointSize(26)
+        font.setPointSize(18)
         self.deadline.setFont(font)
         self.deadline.setText(f'Дедлайн: {i[1]}')
         self.deadline.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.deadline.setStyleSheet('color: white;')
+        self.deadline.setAlignment(QtCore.Qt.AlignCenter)
+        self.deadline.setObjectName(i[0])
+
+        self.deadline = QtWidgets.QLabel(self.centralwidget)
+        self.deadline.setGeometry(QtCore.QRect(95, 300, 400, 41))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.deadline.setFont(font)
+        self.deadline.setText(f'Описание: {i[3]}')
+        self.deadline.setLayoutDirection(QtCore.Qt.LeftToRight)
+        # self.deadline.setStyleSheet('color: white;')
         self.deadline.setAlignment(QtCore.Qt.AlignCenter)
         self.deadline.setObjectName(i[0])
 

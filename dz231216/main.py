@@ -74,3 +74,4 @@ if __name__ == '__main__':
     f.setup_Ui()
     f.show()
     sys.exit(app.exec_())
+

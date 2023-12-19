@@ -88,5 +88,3 @@ def solution(s):
 if __name__ == "__main__":
     a = input("Введите пример:")
     print(solution(a))
-    #print(solution('8-9'))
-

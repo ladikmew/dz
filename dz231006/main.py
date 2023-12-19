@@ -2,9 +2,10 @@ import hashlib
 import os
 import shutil
 from pathlib import Path
+import sys
 
 
-def sync(source, dest):
+def sync(source, dest, should_do):
     # imperative shell step 1, gather inputs
     source_hashes = read_paths_and_hashes(source)
     dest_hashes = read_paths_and_hashes(dest)
@@ -14,12 +15,14 @@ def sync(source, dest):
 
     # imperative shell step 3, apply outputs
     for action, *paths in actions:
-        if action == "COPY":
-            shutil.copyfile(*paths)
-        if action == "MOVE":
-            shutil.move(*paths)
-        if action == "DELETE":
-            os.remove(paths[0])
+        print(action, *paths)
+        if not should_do:
+            if action == "COPY":
+                shutil.copyfile(*paths)
+            if action == "MOVE":
+                shutil.move(*paths)
+            if action == "DELETE":
+                os.remove(paths[0])
 
 
 BLOCKSIZE = 65536
@@ -60,4 +63,12 @@ def determine_actions(source_hashes, dest_hashes, source_folder, dest_folder):
             yield "DELETE", dest_folder / filename
 
 
-# sync('C:\\Users\\Лада\\dz\\dz231006','C:\\Users\\Лада\\dz\\dz231013')
+if __name__ == "__main__":
+    print(sys.argv)
+    sours = sys.argv[1]
+    dest = sys.argv[2]
+    should_do = False
+    if len(sys.argv)==4:
+        if sys.argv[3] == "--dry-run":
+            should_do = True
+    sync(sours, dest, should_do)

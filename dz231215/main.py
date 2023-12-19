@@ -1,21 +1,3 @@
-# def f(inp):
-#     res = []
-#     n = 0
-#     for i in range(len(inp)):
-#         if inp[i] in ("+", "-", "*", "/",")"):
-#             res.append(int(inp[n:i]))
-#             res.append(inp[i])
-#             n = i + 1
-#         elif inp[i] in ("("):
-#             #res.append(inp[n:i])
-#             res.append(inp[i])
-#             n = i + 1
-#     if res[len(inp)-1]!=")":
-#         res.append(inp[i:])
-#
-#     return res
-#
-# print(f("3+(5*7)"))
 
 def summ(a, b):
     return a + b
@@ -47,14 +29,32 @@ def making_operation(signs, numbers, i):
     if cur_sign == "/":
         numbers.append(devision(a, b))
 
+def separation(s):
+    exer = []
+    l = ""
+    for i in s:
+        if i in ('+', '-', '*', '/', '(', ')'):
+            if len(l)!=0:
+                exer.append(l)
+                l = ""
+            exer.append(i)
+
+        else:
+            l+=i
+    if len(l)!=0:
+        exer.append(l)
+    exer.append('+')
+    exer.append('0')
+    return exer
+
 
 def solution(s):
     operators = {'+': 1, '-': 1, '*': 2, '/': 2, '(': 3, ')': 3}
     # print(operators['+'])
     numbers = []
     signs = []
-
-    for i in s:
+    exer = separation(s)
+    for i in exer:
         if i not in ('+', '-', '*', '/', '(', ')'):
             numbers.append(int(i))
         else:
@@ -86,5 +86,6 @@ def solution(s):
 
 
 if __name__ == "__main__":
-     print(solution("4+((6/2)*3)"))
+     print(solution("602-(3+99)"))
     #print(solution('8-9'))
+

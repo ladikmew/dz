@@ -86,6 +86,7 @@ def solution(s):
 
 
 if __name__ == "__main__":
-     print(solution("602-(3+99)"))
+    a = input("Введите пример:")
+    print(solution(a))
     #print(solution('8-9'))
 

@@ -19,5 +19,10 @@ def index(request):
 
 def detail(request, post_id):
     post = Post.objects.get(pk=post_id)
-    output = post.text
-    return HttpResponse(output)
+
+    template = loader.get_template("blog/post.html")
+    context = {
+        "post": post,
+        "post_id": post_id,
+    }
+    return HttpResponse(template.render(context, request))

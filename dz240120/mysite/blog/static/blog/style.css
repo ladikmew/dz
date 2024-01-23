@@ -1,0 +1,19 @@
+* {
+
+    background-color: rgb(244,152,173);
+}
+
+.header{
+    background-color: red;
+}
+
+.small_header{
+    background-color: green;
+
+}
+
+.title{
+    display: inline-block;
+    background-color: green;
+
+}

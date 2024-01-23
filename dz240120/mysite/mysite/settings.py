@@ -20,11 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-<<<<<<< HEAD
-SECRET_KEY = 'django-insecure-tq60fd1%_(6ia#e(lra&^%u)@#rbkj4$a7&1+ms)ts_ksu^p*9'
-=======
-SECRET_KEY = 'django-insecure-r-b8(bcy@u^j5-dem#p$6xqti0i7yfz$gauy+*s84)5xz#5s7!'
->>>>>>> 591582992b91df85190d8a066deaadf44176e86c
+SECRET_KEY = 'django-insecure-_yna%j^n2_24h*1fc7@)n(+_45v@z6@l)w8$7b1e1x&0st%cl4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,17 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
     'blog.apps.BlogConfig',
-=======
-    'blog.apps.MyblogConfig'
->>>>>>> 591582992b91df85190d8a066deaadf44176e86c
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -125,7 +118,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = '/home/indianlyc/Документы/projects/liceum/lecture_lyc/20240112/mysite/blog/static'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

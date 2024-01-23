@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Мой блог{% endblock %}
+
+{% block body %}
+
+    {% if latest_post_list %}
+        <ul>
+        {% for post in latest_post_list %}
+            <li><a class="small_header" href="{% url 'detail' post.id %}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Пока еще нет постов</p>
+    {% endif %}
+    <header><h2><a class="header" href="{% url 'index' %}">Главное меню</a></h2></header>
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}

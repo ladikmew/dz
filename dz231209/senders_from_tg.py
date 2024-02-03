@@ -26,7 +26,7 @@ for i in range(15):
             #print(last_message)
 
             if last_message['sender_chat']['title'] == CHANNEL_NAME:
-                print(last_message)
+                #print(last_message)
                 promocode = extract_promocode(last_message['author_signature'])
                 f.write(promocode)
                 print(promocode)

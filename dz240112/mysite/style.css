@@ -19,7 +19,7 @@ h2,header {
 }
 */
 section{
-    display: block;
+    background-color:black;
 }
 
 nav {
@@ -39,7 +39,7 @@ article {
 color: white;
 }
 
-img{
+.A_img{
     position: absolute;
     right: 400px;
 }
@@ -53,12 +53,14 @@ img{
   display: block;
   transition: transform 0.3s ease;
   font-size: 25px;
+  text-decoration: none;
 
 
 }
 
 .li:hover {
   transform: scale(1.1);
+  text-decoration: none;
 }
 
 .table_center {
@@ -78,7 +80,7 @@ th {
 /* границы ячеек тела таблицы */
 td {
     color: white;
-    /*text-align: center;*/
+    text-align: center;
    border: 1px solid grey;
 }
 

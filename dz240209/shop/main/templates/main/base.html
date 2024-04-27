@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+    <h1>Категории</h1>
+    {% for category in categories %}
+    <li><a href="{% url 'category' category.id %}">{{ category.name }}</a></li>
+    {% endfor %}
+
+<h1>Товары</h1>
+{% block body %}
+{% endblock %}
+</body>
+</html>

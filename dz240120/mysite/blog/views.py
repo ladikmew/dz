@@ -10,7 +10,7 @@ from comments.models import Comment
 from django.urls import reverse
 
 
-def index(request):
+def main_views(request):
     latest_post_list = Post.objects.order_by("-datetime")
     # output = ", ".join([q.title for q in latest_post_list])
     # return HttpResponse(output)
@@ -19,6 +19,7 @@ def index(request):
     context = {
         "latest_post_list": latest_post_list,
     }
+    print(context)
     # return HttpResponse(template.render(context, request))
     return render(request, "blog/index.html", context)
 

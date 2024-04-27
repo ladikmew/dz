@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<ul>
+{% for item in nine_random_items %}
+    <li><a>{{ item.name }}</a></li>
+    {% endfor %}</ul>
+
+
+{% endblock %}

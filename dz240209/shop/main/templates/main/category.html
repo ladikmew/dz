@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+{% for good in list_goods %}
+    <li><a>{{ good.name }}</a></li>
+    {% endfor %}
+
+
+{% endblock %}
